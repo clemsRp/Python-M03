@@ -9,17 +9,17 @@ def common(game: dict, players: list) -> set:
 
 def all_unique(game: dict) -> set:
     res = set()
-    for achiv in game.values():
-        res = res.union(achiv)
+    for player in game:
+        res = res.union(game[player])
     return res
 
 
 def rare_unique(game: dict) -> set:
     res = all_unique(game)
-    for (player1, achiv1) in game.items():
-        for (player2, achiv2) in game.items():
+    for player1 in game:
+        for player2 in game:
             if player1 != player2:
-                res = res.difference(achiv1.intersection(achiv2))
+                res = res.difference(game[player1].intersection(game[player2]))
     return res
 
 
@@ -56,8 +56,8 @@ if __name__ == "__main__":
     game["Charlie"] = {'level_10', 'treasure_hunter',
                        'boss_slayer', 'speed_demon', 'perfectionist'}
 
-    for (player, achiv) in game.items():
-        print(f"Player {player} achievements: {achiv}")
+    for player in game:
+        print(f"Player {player} achievements: {game[player]}")
     print()
 
     display_statistics(game)
