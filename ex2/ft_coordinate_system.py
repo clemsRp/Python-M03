@@ -5,11 +5,17 @@ import math
 
 
 def get_distance(pos: tuple) -> float:
+    '''
+    Return the distance between 2 points
+    '''
     sum = pos[0] ** 2 + pos[1] ** 2 + pos[2] ** 2
     return (math.sqrt(sum))
 
 
-def parsing_pos(param: str):
+def parsing_pos(param: str) -> None:
+    '''
+    Handle the case where all points are in the same string
+    '''
     state = True
     res = param.split(',')
 
@@ -37,7 +43,10 @@ def parsing_pos(param: str):
     print(f"Distance between (0, 0, 0) and {pos}: {get_distance(pos)}")
 
 
-def direct_pos(params: list):
+def direct_pos(params: list) -> None:
+    '''
+    Handle the case where the points are not in the same string
+    '''
     try:
         pos = tuple(int(elem) for elem in params)
     except ValueError as e:
@@ -48,13 +57,16 @@ def direct_pos(params: list):
     print(f"Distance between (0, 0, 0) and {pos}: {get_distance(pos)}")
 
 
-def unpacking(pos: tuple):
+def unpacking(pos: tuple) -> None:
+    '''
+    Show how unpacking tuples
+    '''
     print(f"Player at x={pos[0]}, y={pos[1]}, z={pos[2]}")
     x, y, z = pos
     print(f"Coordinates: X={x}, Y={y}, Z={z}")
 
 
-def main():
+def main() -> None:
     argc = len(sys.argv)
     if argc == 1:
         print("Missing coordinates.")

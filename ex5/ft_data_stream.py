@@ -2,6 +2,9 @@
 
 
 def get_events(nb_events: int):
+    '''
+    Generate an event
+    '''
     players = ["Alice", "Bob", "Charlie", "John", "Jack"]
     events = ["killed monster", "found treasure", "leveled up"]
 
@@ -22,7 +25,10 @@ def get_events(nb_events: int):
         }
 
 
-def main(nb_events: int):
+def main(nb_events: int) -> None:
+    '''
+    Test different generator
+    '''
     print(f"Processing {nb_events} game events...\n")
 
     events = get_events(nb_events)
@@ -55,6 +61,9 @@ def main(nb_events: int):
 
 
 def fibonacci():
+    '''
+    Generate the fibonacci number
+    '''
     n1 = 0
     n2 = 1
     yield n1
@@ -66,7 +75,10 @@ def fibonacci():
         n2 = new
 
 
-def not_prime(num):
+def not_prime(num) -> bool:
+    '''
+    Return if a number is prime or not
+    '''
     for k in range(2, num):
         if num % k == 0:
             return True
@@ -74,6 +86,9 @@ def not_prime(num):
 
 
 def prime():
+    '''
+    Generate a prime number
+    '''
     i = 2
     while True:
         while not_prime(i):
@@ -82,7 +97,10 @@ def prime():
         i += 1
 
 
-def demonstration():
+def demonstration() -> None:
+    '''
+    Test the fibonacci generator and the prime generator
+    '''
     print("=== Generator Demonstration ===")
 
     nb_f = 10

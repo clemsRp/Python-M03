@@ -23,7 +23,10 @@ def rare_unique(game: dict) -> set:
     return res
 
 
-def display_statistics(game: dict):
+def display_statistics(game: dict) -> None:
+    '''
+    Show the analytics of the achievement functions
+    '''
     print("=== Achievement Analytics ===")
 
     all_uniques = all_unique(game)
@@ -39,7 +42,10 @@ def display_statistics(game: dict):
     print()
 
 
-def comparaison(game: dict, player1: str, player2: str):
+def comparaison(game: dict, player1: str, player2: str) -> None:
+    '''
+    Compare 2 different player achievements
+    '''
     print(f"{player1} vs {player2} common:", common(game, [player1, player2]))
 
     print(f"{player1} unique:", game[player1].difference(game[player2]))

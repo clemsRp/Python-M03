@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 
 
-def list_comprehensions(players: list):
+def list_comprehensions(players: list) -> None:
+    '''
+    Test the list creation by comprehensions
+    '''
     scores = [player["name"] for player in players if player["score"] > 2000]
     print("High scorers (>2000):", scores)
 
@@ -12,7 +15,10 @@ def list_comprehensions(players: list):
     print("Active players:", active)
 
 
-def dict_comprehensions(players: list):
+def dict_comprehensions(players: list) -> None:
+    '''
+    Test the dict creation by comprehensions
+    '''
     scores = {player["name"]: player["score"] for player in players}
     print("Player scores:", scores)
 
@@ -24,7 +30,10 @@ def dict_comprehensions(players: list):
     print("Achievement counts:", achivs)
 
 
-def get_occurs(region: str, players: list):
+def get_occurs(region: str, players: list) -> int:
+    '''
+    Return the number of times a region appears in the players data
+    '''
     occurs = 0
     for player in players:
         if region in player["regions"]:
@@ -33,7 +42,10 @@ def get_occurs(region: str, players: list):
     return occurs
 
 
-def get_regions(players: list):
+def get_regions(players: list) -> dict:
+    '''
+    Return the most present regions in players data
+    '''
     visited = []
     regions = []
     max_occur = 0
@@ -51,7 +63,10 @@ def get_regions(players: list):
     return {region for region in regions}
 
 
-def set_comprehensions(players: list):
+def set_comprehensions(players: list) -> None:
+    '''
+    Test the set creation by comprehensions
+    '''
     unique_players = {player["name"] for player in players}
     print("Unique players:", unique_players)
 
@@ -62,11 +77,17 @@ def set_comprehensions(players: list):
     print("Active regions:", active_regions)
 
 
-def get_score(player: dict):
+def get_score(player: dict) -> int:
+    '''
+    Return a player's score
+    '''
     return player["score"]
 
 
-def combined_analysis(players: list):
+def combined_analysis(players: list) -> None:
+    '''
+    Test all the comprehension creations
+    '''
     total_players = len([player["name"] for player in players])
     print("Total players:", total_players)
 

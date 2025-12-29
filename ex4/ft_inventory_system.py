@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 
 
-def init_dico():
+def init_dico() -> dict:
+    '''
+    Return the dict with all the players informations,
+    and their inventory
+    '''
     players = dict()
     players["Alice"] = [
         {
@@ -39,7 +43,10 @@ def init_dico():
     return players
 
 
-def display_inventory(players: dict, name: str):
+def display_inventory(players: dict, name: str) -> None:
+    '''
+    Show the inventory of a player
+    '''
     print(f"=== {name}'s Inventory ===")
 
     for obj in players[name]:
@@ -48,7 +55,10 @@ def display_inventory(players: dict, name: str):
     print()
 
 
-def display_summary(players: dict, name: str):
+def display_summary(players: dict, name: str) -> None:
+    '''
+    Show some informations about about an inventory
+    '''
     total = 0
     types = [0, 0, 0]
     for obj in players[name]:
@@ -67,19 +77,26 @@ def display_summary(players: dict, name: str):
     print()
 
 
-def set_item(players: dict, src: str, dest: str, name: str, num: int):
+def set_item(players: dict, src: str, dest: str, name: str, num: int) -> dict:
+    '''
+    Return the item setted if he exist,
+    else return nothing
+    '''
     if src not in players or dest not in players or num <= 0:
-        return None
+        return
 
     for item in players[src]:
         if item["name"] == name and item["num"] >= num:
             item["num"] -= num
             return item
 
-    return None
+    return
 
 
-def transfere(players: dict, src: str, dest: str, name: str, num: int):
+def transfere(players: dict, src: str, dest: str, name: str, num: int) -> None:
+    '''
+    Simulate the transfere of items from a player to another
+    '''
     print(f"=== Transaction: {src} gives {dest} {num} "
           f"{name}{"s" if num > 1 else ""} ===")
     item = set_item(players, src, dest, name, num)
@@ -114,7 +131,10 @@ def transfere(players: dict, src: str, dest: str, name: str, num: int):
         print(f"{dest} {name}s:", dest_num)
 
 
-def get_value(invent: list):
+def get_value(invent: list) -> int:
+    '''
+    Return the total value of an inventory
+    '''
     value = 0
     for item in invent:
         value += item["num"] * item["price"]
@@ -122,7 +142,10 @@ def get_value(invent: list):
     return value
 
 
-def get_most_valuable(players: dict):
+def get_most_valuable(players: dict) -> list:
+    '''
+    Return the player with the most valuable inventory and it value
+    '''
     res = [None, 0]
     for (player, invent) in players.items():
         if get_value(invent) > res[1]:
@@ -131,7 +154,10 @@ def get_most_valuable(players: dict):
     return res
 
 
-def get_num_items(invent: list):
+def get_num_items(invent: list) -> int:
+    '''
+    Return the number of items in an inventory
+    '''
     num = 0
     for item in invent:
         num += item["num"]
@@ -139,7 +165,11 @@ def get_num_items(invent: list):
     return num
 
 
-def get_most_items(players: dict):
+def get_most_items(players: dict) -> list:
+    '''
+    Return the name of the player with the most items
+    and the number of items he has
+    '''
     res = [None, 0]
     for (player, invent) in players.items():
         if get_num_items(invent) > res[1]:
@@ -148,7 +178,10 @@ def get_most_items(players: dict):
     return res
 
 
-def get_rarest_items(players: dict):
+def get_rarest_items(players: dict) -> list:
+    '''
+    Return the list of the rarest items
+    '''
     rarety = {
         "uncommon": 0,
         "common": 1,
@@ -168,7 +201,10 @@ def get_rarest_items(players: dict):
     return items
 
 
-def inventory_analytics():
+def inventory_analytics() -> None:
+    '''
+    Show the analytics of the inventory functions
+    '''
     print("\n=== Inventory Analytics ===")
     valuable = get_most_valuable(players)
     items = get_most_items(players)
