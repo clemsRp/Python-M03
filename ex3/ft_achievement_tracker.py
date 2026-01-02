@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
 def common(game: dict, players: list) -> set:
+    '''
+    Return the achievements common to all players
+    '''
     res = game[players[0]]
     for player in players[1:]:
         res = res.intersection(game[player])
@@ -8,6 +11,9 @@ def common(game: dict, players: list) -> set:
 
 
 def all_unique(game: dict) -> set:
+    '''
+    Return all the achievements
+    '''
     res = set()
     for player in game:
         res = res.union(game[player])
@@ -15,6 +21,9 @@ def all_unique(game: dict) -> set:
 
 
 def rare_unique(game: dict) -> set:
+    '''
+    Return the achievements that occurs only one time
+    '''
     res = all_unique(game)
     for player1 in game:
         for player2 in game:
