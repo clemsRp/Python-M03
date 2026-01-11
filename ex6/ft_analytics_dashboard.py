@@ -103,9 +103,12 @@ def combined_analysis(players: list) -> None:
     print("Average score:", average_score)
 
     sorted_players = sorted(players, key=get_score, reverse=True)
-    print(f"Total players: {sorted_players[0]["name"]}"
-          f" ({sorted_players[0]["score"]} points,"
-          f" {len(sorted_players[0]["achiv"])} achievements)")
+    player_name = sorted_players[0]["name"]
+    player_score = sorted_players[0]["score"]
+    player_achievements = sorted_players[0]["achiv"]
+    print(f"Total players: {player_name}"
+          f" ({player_score} points,"
+          f" {len(player_achievements)} achievements)")
 
 
 if __name__ == "__main__":

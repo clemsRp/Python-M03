@@ -50,8 +50,13 @@ def display_inventory(players: dict, name: str) -> None:
     print(f"=== {name}'s Inventory ===")
 
     for obj in players[name]:
-        print(f"{obj["name"]} ({obj["type"]}, {obj["rarety"]}): {obj["num"]}x "
-              f"@ {obj["price"]} gold each = {obj["num"] * obj["price"]} gold")
+        obj_name = obj["name"]
+        obj_type = obj["type"]
+        obj_rarety = obj["rarety"]
+        obj_num = obj["num"]
+        obj_price = obj["price"]
+        print(f"{obj_name} ({obj_type}, {obj_rarety}): {obj_num}x "
+              f"@ {obj_price} gold each = {obj_num * obj_price} gold")
     print()
 
 
@@ -97,8 +102,8 @@ def transfere(players: dict, src: str, dest: str, name: str, num: int) -> None:
     '''
     Simulate the transfere of items from a player to another
     '''
-    print(f"=== Transaction: {src} gives {dest} {num} "
-          f"{name}{"s" if num > 1 else ""} ===")
+    print(f"=== Transaction: {src} gives {dest} {num} " +
+          name + "s" if num > 1 else "" + " ===")
     item = set_item(players, src, dest, name, num)
 
     if item is None:

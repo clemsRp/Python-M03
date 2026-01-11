@@ -44,8 +44,12 @@ def main(nb_events: int) -> None:
             level_events += 1
 
         if event["id"] <= 3:
-            print(f"Event {event["id"]}: Player {event["player"]}"
-                  f" (level {event["level"]}) {event["type"]}")
+            event_id = event["id"]
+            event_player = event["player"]
+            event_level = event["level"]
+            event_type = event["type"]
+            print(f"Event {event_id}: Player {event_player}"
+                  f" (level {event_level}) {event_type}")
     print("...\n")
 
     print("=== Stream Analytics ===")
