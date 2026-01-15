@@ -17,6 +17,10 @@ def parsing_pos(param: str) -> None:
     Handle the case where all points are in the same string
     '''
     state = True
+    res = []
+    if "," not in param:
+        print("Invalid arguments")
+        return
     res = param.split(',')
 
     if len(res) != 3:
