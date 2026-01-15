@@ -77,22 +77,24 @@ if __name__ == "__main__":
             nb_items += int(quantity)
     except Exception as e:
         print("Error:", e)
+        sys.exit(1)
 
     print("Total items in inventory:", nb_items)
     print("Unique item types:", argc - 1)
-    print()
 
-    print("=== Current Inventory ===")
-    display_inventory(inventory, nb_items)
+    if nb_items != 0:
+        print()
+        print("=== Current Inventory ===")
+        display_inventory(inventory, nb_items)
 
-    print("=== Inventory Statistics ===")
-    display_stats(inventory)
+        print("=== Inventory Statistics ===")
+        display_stats(inventory)
 
-    print("=== Item Categories ===")
-    display_categories(inventory, nb_items)
+        print("=== Item Categories ===")
+        display_categories(inventory, nb_items)
 
-    print("=== Management Suggestions ===")
-    display_sugestion(inventory)
+        print("=== Management Suggestions ===")
+        display_sugestion(inventory)
 
-    print("=== Dictionary Properties Demo ===")
-    display_demo(inventory)
+        print("=== Dictionary Properties Demo ===")
+        display_demo(inventory)
