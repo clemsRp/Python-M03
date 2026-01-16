@@ -6,7 +6,7 @@ import sys
 def display_inventory(inventory: dict, nb_items: int) -> None:
     sorted_dict = sorted(inventory.items(), key=lambda x: x[1], reverse=True)
     for (item, quantity) in sorted_dict:
-        percent = round(quantity / nb_items * 100, 2)
+        percent = round(quantity / nb_items * 100, 1)
         print(f"{item}: {quantity} units ({percent}%)")
     print()
 
@@ -73,6 +73,8 @@ if __name__ == "__main__":
     try:
         for arg in sys.argv[1:]:
             object, quantity = arg.split(":")
+            if object == "":
+                raise Exception("Object name should not be empty")
             inventory[object] = int(quantity)
             nb_items += int(quantity)
     except Exception as e:

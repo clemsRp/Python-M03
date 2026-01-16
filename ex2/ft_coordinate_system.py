@@ -12,19 +12,20 @@ def get_distance(pos: tuple) -> float:
     return (math.sqrt(sum))
 
 
+def get_split(param: str) -> tuple:
+    num_comma = 0
+    for c in param:
+        num_comma += int(c == ",")
+    if num_comma != 2 or param[0] == "," or param[-1] == ",":
+        return (False, [])
+    return (True, param.split(","))
+
+
 def parsing_pos(param: str) -> None:
     '''
     Handle the case where all points are in the same string
     '''
-    state = True
-    res = []
-    if "," not in param:
-        print("Invalid arguments")
-        return
-    res = param.split(',')
-
-    if len(res) != 3:
-        state = False
+    state, res = get_split(param)
     for s in res:
         try:
             int(s)
@@ -33,18 +34,16 @@ def parsing_pos(param: str) -> None:
 
     if state:
         print(f'Parsing coordinates: "{param}"')
+        try:
+            pos = tuple(int(elem) for elem in res)
+            print("Parsed position:", pos)
+            print(f"Distance between (0, 0, 0) and {pos}: {get_distance(pos)}")
+        except ValueError as e:
+            print(f"Error parsing coordinates: {e}")
+            print(f"Error details - Type: ValueError, Args: {e.args}")
+            return
     else:
         print(f'Parsing invalids coordinates: "{param}"')
-
-    try:
-        pos = tuple(int(elem) for elem in res)
-    except ValueError as e:
-        print(f"Error parsing coordinates: {e}")
-        print(f"Error details - Type: ValueError, Args: {e.args}")
-        return
-
-    print("Parsed position:", pos)
-    print(f"Distance between (0, 0, 0) and {pos}: {get_distance(pos)}")
 
 
 def direct_pos(params: list) -> None:
